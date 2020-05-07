@@ -28,7 +28,7 @@
       "memoryReservation": 300,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "<IMAGE1_NAME>",
+      "image": "845551370725.dkr.ecr.ap-northeast-1.amazonaws.com/test:latest",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -54,7 +54,7 @@
   "compatibilities": [
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:845551370725:task-definition/ibis-test-task:3",
+  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-1:845551370725:task-definition/ibis-test-task:4",
   "family": "ibis-test-task",
   "requiresAttributes": [
     {
@@ -76,7 +76,7 @@
   ],
   "networkMode": null,
   "cpu": null,
-  "revision": 3,
+  "revision": 4,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,

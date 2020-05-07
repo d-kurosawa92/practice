@@ -6,9 +6,6 @@ phases:
   build:
     commands:
       - echo build
-      - echo Building the Docker image...
-      - git clone https://github.com/d-kurosawa92/practice.git
-      - cp -rf ./practice/index.html /var/www/html/
   post_build:
     commands:
       - echo post_build
