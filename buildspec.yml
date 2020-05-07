@@ -6,7 +6,8 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --region ap-northeast-1 --no-include-email)
+      - aws --version
+      - $(aws ecr get-login --no-include-email --region ap-northeast-1)
       - REPOSITORY_URI=845551370725.dkr.ecr.ap-northeast-1.amazonaws.com/test
       - git clone https://github.com/d-kurosawa92/practice.git
       - cd practice
