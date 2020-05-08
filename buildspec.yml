@@ -1,11 +1,34 @@
 version: 0.2
+
+env:
+  #
 phases:
+  install:
+    #
   pre_build:
     commands:
-      - echo pre_build
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin 845551370725.dkr.ecr.ap-northeast-1.amazonaws.com
+      - REPOSITORY_URI=845551370725.dkr.ecr.ap-northeast-1.amazonaws.com/test
+      - git clone https://github.com/d-kurosawa92/practice.git
+      - cd practice
+      - COMMIT_HASH=$(echo git rev-parse HEAD)
+      - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
     commands:
-      - echo build
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
-      - echo post_build
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image detail file...
+      - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
+artifacts:
+  files:
+    - imageDetail.json
