@@ -3,7 +3,7 @@ version: 0.2
 env:
   #
 phases:
-  install:
+  #install:
     #
   pre_build:
     commands:
